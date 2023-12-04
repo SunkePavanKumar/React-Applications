@@ -1,0 +1,10 @@
+.list button {
+  /* background-color: red !important; */
+  float: right;
+  width: 80px;
+  border-radius: 30px;
+}
+
+/* CSS Module is used to apply the css for the particular component in future if any change 
+that needs to be done to the css we can change that module alone
+*/

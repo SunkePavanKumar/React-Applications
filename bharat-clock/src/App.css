@@ -1,0 +1,13 @@
+.container {
+  text-align: center;
+  position: relative;
+  top: 20vh;
+  bottom: 40vh;
+  right: 35vw;
+  left: 35vw;
+  min-width: 500px;
+  width: 200px;
+  background-color: aliceblue;
+  padding: 10px;
+  border-radius: 20px;
+}

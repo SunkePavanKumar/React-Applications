@@ -1,0 +1,10 @@
+.todo-contaier {
+  background-color: gray;
+  margin: 20px;
+  border-radius: 20px;
+  overflow: auto;
+}
+
+.items {
+  text-align: left;
+}
