@@ -1,0 +1,28 @@
+.side-nav {
+  display: flex;
+}
+
+.content {
+  width: 100%;
+}
+
+.side-bar {
+  min-height: 550px;
+}
+
+form {
+  margin: 40px;
+  width: 50%;
+}
+
+.card {
+  margin: 40px;
+}
+
+.post-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
