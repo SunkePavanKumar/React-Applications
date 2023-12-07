@@ -11,8 +11,9 @@
 }
 
 form {
-  margin: 40px;
-  width: 50%;
+  margin-top: 40px;
+  width: 80%;
+  margin-left: 10%;
 }
 
 .card {
@@ -25,4 +26,23 @@ form {
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.badge {
+  padding: 2px;
+  margin: 5px;
+}
+
+.reactions {
+  width: 288px;
+  margin-top: 20px;
+}
+
+.delete-post {
+  cursor: pointer;
+}
+
+.delete-post:hover {
+  height: 25px;
+  width: 30px;
 }
