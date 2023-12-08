@@ -3,17 +3,23 @@ import Post from "./Post";
 import { PostStore } from "../Contexts/PostStore";
 import Message from "./Message";
 import axios from "axios";
+import Loading from "./Loading";
 
 function PostList() {
-  const { postList } = useContext(PostStore);
-  return postList.length === 0 ? (
-    <Message />
-  ) : (
-    <div className="post-list">
-      {postList.map((post) => (
-        <Post key={post.id} post={post} />
-      ))}
-    </div>
+  const { postList, fetching } = useContext(PostStore);
+
+  return (
+    <>
+      {!fetching && <Loading />}
+      {fetching && postList.length === 0 && <Message />}
+      {fetching && (
+        <div className="post-list">
+          {postList.map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 

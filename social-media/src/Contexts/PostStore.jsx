@@ -1,11 +1,11 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import axios from "axios";
 
 export const PostStore = createContext({
   postList: [],
   addPost: () => {},
   deletePost: () => {},
-  getPosts: () => {},
+  fetching: false,
 });
 
 function postListAction(postList, action) {
@@ -26,6 +26,7 @@ function postListAction(postList, action) {
 
 function PostStoreProvider({ children }) {
   let [postList, dispach] = useReducer(postListAction, []);
+  let [fetching, setfetching] = useState(false);
   function addPost(data) {
     dispach({
       type: "addPost",
@@ -44,7 +45,7 @@ function PostStoreProvider({ children }) {
     console.log(postList);
   }
 
-  function getPosts() {
+  useEffect(() => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
@@ -60,14 +61,15 @@ function PostStoreProvider({ children }) {
           payload: response.data.posts,
         });
         console.log(JSON.stringify(response.data));
+        setfetching(true);
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  }, []);
 
   return (
-    <PostStore.Provider value={{ postList, addPost, deletePost, getPosts }}>
+    <PostStore.Provider value={{ postList, addPost, deletePost, fetching }}>
       {children}
     </PostStore.Provider>
   );
