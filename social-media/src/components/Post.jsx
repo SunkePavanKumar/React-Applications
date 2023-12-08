@@ -15,8 +15,8 @@ function Post({ post }) {
         </span>
 
         <h5 className="card-title">{post.title}</h5>
-        <p className="card-text">{post.cotent}</p>
-        {post.badges.map((badge) => (
+        <p className="card-text">{post.body}</p>
+        {post.tags.map((badge) => (
           <span className="badge text-bg-secondary" key={badge}>
             {badge}
           </span>

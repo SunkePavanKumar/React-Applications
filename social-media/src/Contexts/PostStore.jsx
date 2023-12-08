@@ -1,9 +1,11 @@
 import { createContext, useReducer } from "react";
+import axios from "axios";
 
 export const PostStore = createContext({
   postList: [],
   addPost: () => {},
   deletePost: () => {},
+  getPosts: () => {},
 });
 
 function postListAction(postList, action) {
@@ -16,30 +18,14 @@ function postListAction(postList, action) {
   if (action.type === "addPost") {
     return [action.payload.data, ...postList];
   }
+
+  if (action.type === "addData") {
+    return action.payload;
+  }
 }
 
 function PostStoreProvider({ children }) {
-  const postListData = [
-    {
-      title: "This is 'my first post",
-      cotent:
-        "Hai this is my first post that iam writing how i can post the cotent",
-      id: 1,
-      name: "Pavan Kumar Sunke",
-      badges: ["enjoy", "happy", "peaceful", "joy"],
-      reactions: 8,
-    },
-    {
-      title: "This is 'my first2 post",
-      cotent:
-        "Hai this is my first post that iam writing how i can post the cotent",
-      id: 2,
-      name: "Pavan Kumar Sunke",
-      badges: ["enjoy", "happy", "peaceful", "joy"],
-      reactions: 98,
-    },
-  ];
-
+  let [postList, dispach] = useReducer(postListAction, []);
   function addPost(data) {
     dispach({
       type: "addPost",
@@ -57,10 +43,31 @@ function PostStoreProvider({ children }) {
     });
     console.log(postList);
   }
-  let [postList, dispach] = useReducer(postListAction, postListData);
+
+  function getPosts() {
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: "https://dummyjson.com/posts",
+      headers: {},
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        dispach({
+          type: "addData",
+          payload: response.data.posts,
+        });
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
-    <PostStore.Provider value={{ postList, addPost, deletePost }}>
+    <PostStore.Provider value={{ postList, addPost, deletePost, getPosts }}>
       {children}
     </PostStore.Provider>
   );

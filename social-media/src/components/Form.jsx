@@ -14,9 +14,9 @@ function Form() {
 
     const postObj = {
       title: title.current.value,
-      cotent: content.current.value,
+      body: content.current.value,
       id: userId.current.value,
-      badges: hashtags.current.value.split(" "),
+      tags: hashtags.current.value.split(" "),
       reactions: reactions.current.value,
     };
 
