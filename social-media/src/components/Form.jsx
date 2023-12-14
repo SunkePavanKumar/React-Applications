@@ -1,7 +1,9 @@
 import { useContext, useRef } from "react";
 import { PostStore } from "../Contexts/PostStore";
+import { useNavigate } from "react-router-dom";
 
 function Form() {
+  const navigate = useNavigate();
   const userId = useRef(null);
   const content = useRef(null);
   const title = useRef(null);
@@ -21,6 +23,7 @@ function Form() {
     };
 
     addPost(postObj);
+    navigate("/");
     title.current.value = "";
     content.current.value = "";
     userId.current.value = "";

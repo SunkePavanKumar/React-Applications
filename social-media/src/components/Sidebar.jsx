@@ -1,12 +1,6 @@
-import { useContext } from "react";
-import { ContentSwitch } from "../Contexts/ContentSwitch";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
-  const { setSwitchContent, switchContent } = useContext(ContentSwitch);
-
-  function changeContent(content) {
-    setSwitchContent(content);
-  }
   return (
     <div
       className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark side-bar"
@@ -24,33 +18,24 @@ function Sidebar() {
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
         <li className="nav-item">
-          <a
-            href="#"
-            className={`nav-link text-white home ${
-              switchContent === "home" && "active"
-            }`}
+          <Link
+            to="/"
+            className={`nav-link text-white home`}
             aria-current="page"
-            onClick={() => changeContent("home")}
           >
             <svg className="bi pe-none me-2" width={16} height={16}>
               <use xlinkHref="#home" />
             </svg>
             Home
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#"
-            className={`nav-link text-white post  ${
-              switchContent === "post" && "active"
-            }`}
-            onClick={() => changeContent("post")}
-          >
+          <Link to="/create-post" className={`nav-link text-white post  `}>
             <svg className="bi pe-none me-2" width={16} height={16}>
               <use xlinkHref="#speedometer2" />
             </svg>
             Create Post
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
